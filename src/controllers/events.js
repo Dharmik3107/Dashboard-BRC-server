@@ -37,7 +37,7 @@ export async function removeCustomHours(req, res) {
 		const isEventExist = await Events.findOne({ id });
 
 		if (isEventExist) {
-			await Events.findByIdAndDelete({ id })
+			await Events.findOneAndDelete({ id })
 				.then((result) => sendResponse(res, 200, false, "Event Deleted"))
 				.catch((error) => sendResponse(res, 500, true, error));
 		} else {
