@@ -56,7 +56,7 @@ export async function editCustomHours(req, res) {
 		const isEventExist = await Events.findOne({ id });
 
 		if (isEventExist) {
-			await Events.findByIdAndUpdate({ id }, { id, date, start, end, offer }, { new: true })
+			await Events.findOneAndUpdate({ id }, { id, date, start, end, offer }, { new: true })
 				.then((result) => sendResponse(res, 200, false, result))
 				.catch((error) => sendResponse(res, 500, true, error));
 		} else {
