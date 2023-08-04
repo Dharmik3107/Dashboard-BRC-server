@@ -6,7 +6,7 @@ export async function addNewHour(req, res) {
 		const { id, date, start, end, offer } = req.body;
 
 		//Checking event with same id exist or not
-		const isEventExist = await User.findOne({ id });
+		const isEventExist = await Events.findOne({ id });
 
 		//Condition operations based on existance
 		if (!isEventExist) {
@@ -34,7 +34,7 @@ export async function removeCustomHours(req, res) {
 		const { id } = req.body;
 
 		//Check event exist or not
-		const isEventExist = await User.findOne({ id });
+		const isEventExist = await Events.findOne({ id });
 
 		if (isEventExist) {
 			await Events.findByIdAndDelete({ id })
@@ -53,7 +53,7 @@ export async function editCustomHours(req, res) {
 		const { id, date, start, end, offer } = req.body;
 
 		//Checking event with same id exist or not
-		const isEventExist = await User.findOne({ id });
+		const isEventExist = await Events.findOne({ id });
 
 		if (isEventExist) {
 			await Events.findByIdAndUpdate({ id }, { id, date, start, end, offer }, { new: true })
